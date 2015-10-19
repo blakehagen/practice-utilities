@@ -38,24 +38,56 @@ var _ = { };
   // Call iterator(value, key, collection) for each element of collection.
   // Accepts both arrays and objects.
   _.each = function(collection, iterator) {
+    
   };
 
   // Returns the index at which value can be found in the array, or -1 if value
   // is not present in the array.
   _.indexOf = function(array, target){
-  };
+    for(var i = 0; i < array.length; i++){
+      if(array[i] === target){
+        return i;
+      }
+    }
+    return -1;
+  }
 
   // Return all elements of an array that pass a truth test.
-  _.filter = function(collection, iterator) {
+  _.filter = function(array, iterator) {
+    var res = [];
+    for(var i = 0; i < array.length; i++){
+      if(iterator(array[i]) === true){
+        res.push(array[i]);
+      }
+    }
+    return res;
   };
 
   // Return all elements of an array that don't pass a truth test.
-  _.reject = function(collection, iterator) {
+  _.reject = function(array, iterator) {
+
+    for(var i = 0; i < array.length; i++){
+      if(iterator(array[i]) === true){
+        array.splice(i,1);
+      }
+    }
+    return array;
   };
 
   // Produce a duplicate-free version of the array.
-  _.uniq = function(array) {
+  _.uniq = function(arr) {
+    arr.sort(function(a,b){
+      return a-b;
+      });
+      for(var i = 0; i < arr.length; i++){
+        if(arr[i] === arr[i+1]){
+            arr.splice(i,1);
+            i--;
+        }
+    }
+    return arr;
   };
+    
 
 
   // Return the results of applying an iterator to each element.
