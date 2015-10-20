@@ -138,6 +138,24 @@ var _ = { };
 
   // Determine whether all of the elements match a truth test.
   _.every = function(collection, iterator) {
+    var count = 0;
+    if(collection.length === 0){
+      return true;
+    }
+    if(iterator == undefined){
+      iterator = function(){
+        count++;
+        }
+    }
+    for(var j=0; j<collection.length; j++){
+      if(iterator(collection[j]) == true){
+        count++;
+      }
+    }
+    if(count === collection.length){
+      return true;
+    } 
+    return false
   };
 
   // Determine whether any of the elements pass a truth test. If no iterator is
