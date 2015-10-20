@@ -41,8 +41,6 @@ var _ = { };
     for(var i in collection){
       iterator(collection[i], i, collection);
     }
-
-    
   };
 
   // Returns the index at which value can be found in the array, or -1 if value
@@ -115,6 +113,16 @@ var _ = { };
 
   // Calls the method named by methodName on each value in the list.
   _.invoke = function(list, methodName, args) {
+    var res = [];
+    list.forEach(function(elem){
+      if(typeof methodName === 'function'){
+        res.push(methodName.apply(elem, args));
+      }
+      else {
+        res.push(elem[methodName]());
+      }
+    });
+    return res;
   };
 
   // Reduces an array or object to a single value by repetitively calling
