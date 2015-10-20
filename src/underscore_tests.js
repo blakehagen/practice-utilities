@@ -38,6 +38,10 @@ var _ = { };
   // Call iterator(value, key, collection) for each element of collection.
   // Accepts both arrays and objects.
   _.each = function(collection, iterator) {
+    for(var i in collection){
+      iterator(collection[i], i, collection);
+    }
+
     
   };
 
