@@ -180,36 +180,13 @@ var _ = { };
   // Determine whether any of the elements pass a truth test. If no iterator is
   // provided, provide a default one
   _.some = function(collection, iterator) {
-    // var countFalse = 0;
-    // var countTrue = 0;
-    // for(var i = 0; i < collection.length; i++){
-    //  if(iterator(collection[i]) == true){
-    //    countTrue++;
-    //   }
-    //   if(collection[i] == false){
-    //     countFalse++;
-    //   }
-    // }
-    // if(countFalse === collection.length){
-    //   return false;
-    // }
-    // if(countTrue > 0){
-    //   return true;
-    // }
-    // return false;
-    
-    for(var i = 0; i < collection.length; i++){
-      var falseCount = 0;
-      if(iterator(collection[i]) == true){
-        console.log("yes");
+    iterator = iterator || function(item){
+      return !!item;
+    };
+    for(var i in collection){
+      if(iterator(collection[i])){
         return true;
-      } else {
-        falseCount++;
       }
-    }
-    console.log(falseCount);
-    if(falseCount === collection.length){
-      console.log("FALSE");
     }
     return false;
   };
