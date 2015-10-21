@@ -129,6 +129,13 @@ var _ = { };
   // iterator(previousValue, item) for each item. previousValue should be
   // the return value of the previous iterator call.
   _.reduce = function(collection, iterator, initialValue) {
+    var accumulator = initialValue || 0;
+    if(collection.length === 0) return accumulator;
+    return _.reduce(
+      collection.slice(1),
+      iterator,
+      iterator(collection[0], accumulator)
+    );
   };
 
   // Determine if the array or object contains a given value (using `===`).
