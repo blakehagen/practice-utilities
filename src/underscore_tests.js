@@ -214,12 +214,20 @@ var _ = { };
       res[key] = obj3[key];
     }
     return res;
-    
   };
 
   // Like extend, but doesn't ever overwrite a key that already
   // exists in obj
   _.defaults = function(obj) {
+    for(var i = 1; i < arguments.length; i++){
+      var arg = arguments[i];
+      for(var key in arg){
+        if(!(key in obj)){
+          obj[key] = arg[key];
+        }
+      }
+    }
+    return obj;
   };
 
 
