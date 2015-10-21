@@ -201,7 +201,20 @@ var _ = { };
 
   // Extend a given object with all the properties of the passed in
   // object(s).
-  _.extend = function(obj) {
+  _.extend = function(obj, obj2, obj3) {
+    var res = {};
+    
+    for(var key in obj){
+      res[key] = obj[key];
+    }
+    for(key in obj2){
+      res[key] = obj2[key];
+    }
+    for(key in obj3){
+      res[key] = obj3[key];
+    }
+    return res;
+    
   };
 
   // Like extend, but doesn't ever overwrite a key that already
