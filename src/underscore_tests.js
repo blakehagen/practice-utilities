@@ -201,19 +201,14 @@ var _ = { };
 
   // Extend a given object with all the properties of the passed in
   // object(s).
-  _.extend = function(obj, obj2, obj3) {
-    var res = {};
-    
-    for(var key in obj){
-      res[key] = obj[key];
+  _.extend = function(obj){
+    for(var i = 0; i < arguments.length; i++){
+      var arg = arguments[i];
+      for(var key in arg){
+        obj[key] = arg[key]
+      }
     }
-    for(key in obj2){
-      res[key] = obj2[key];
-    }
-    for(key in obj3){
-      res[key] = obj3[key];
-    }
-    return res;
+    return obj;
   };
 
   // Like extend, but doesn't ever overwrite a key that already
@@ -239,7 +234,15 @@ var _ = { };
   // Return a function that can be called at most one time. Subsequent calls
   // should return the previously returned value.
   _.once = function(func) {
-  };
+    var result;
+    return function() { 
+      if(func){
+        result = func();
+        func = null;
+      }
+    }
+    return result;
+	};
 
   // Memoize an expensive function by storing its results. You may assume
   // that the function takes only one argument and that it is a primitive.
